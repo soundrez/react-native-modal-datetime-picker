@@ -41,6 +41,7 @@ export class DateTimePickerModal extends React.PureComponent {
     confirmTextIOS: PropTypes.string,
     customCancelButtonIOS: PropTypes.elementType,
     customConfirmButtonIOS: PropTypes.elementType,
+    customNeutralButtonIOS: PropTypes.elementType,
     customHeaderIOS: PropTypes.elementType,
     customPickerIOS: PropTypes.elementType,
     date: PropTypes.instanceOf(Date),
@@ -140,6 +141,7 @@ export class DateTimePickerModal extends React.PureComponent {
       confirmTextIOS,
       customCancelButtonIOS,
       customConfirmButtonIOS,
+      customNeutralButtonIOS,
       customDatePickerIOS, // Deprecated
       customHeaderIOS,
       customPickerIOS,
@@ -162,6 +164,7 @@ export class DateTimePickerModal extends React.PureComponent {
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
+    const NeutralButtonComponent = customNeutralButtonIOS || CancelButton;
     const HeaderComponent =
       typeof (customTitleContainerIOS || customHeaderIOS) === "undefined"
         ? Header
@@ -200,7 +203,7 @@ export class DateTimePickerModal extends React.PureComponent {
           />
         </View>
         {neutralButtonLabel && (
-          <CancelButtonComponent
+          <NeutralButtonComponent
             isDarkModeEnabled={isDarkModeEnabled}
             onPress={this.onNeutral}
             label={neutralButtonLabel}
