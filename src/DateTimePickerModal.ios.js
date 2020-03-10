@@ -54,7 +54,9 @@ export class DateTimePickerModal extends React.PureComponent {
     onChange: PropTypes.func,
     onHide: PropTypes.func,
     maximumDate: PropTypes.instanceOf(Date),
-    minimumDate: PropTypes.instanceOf(Date)
+    minimumDate: PropTypes.instanceOf(Date),
+    neutralButtonLabel: PropTypes.string,
+    onNeutral: PropTypes.func
   };
 
   static defaultProps = {
@@ -64,7 +66,8 @@ export class DateTimePickerModal extends React.PureComponent {
     date: new Date(),
     isDarkModeEnabled: false,
     isVisible: false,
-    pickerContainerStyleIOS: {}
+    pickerContainerStyleIOS: {},
+    onNeutral: () => {},
   };
 
   state = {
@@ -153,6 +156,7 @@ export class DateTimePickerModal extends React.PureComponent {
       onHide,
       onHideAfterConfirm, // Deprecated
       titleIOS, // Deprecated
+      neutralButtonLabel,
       ...otherProps
     } = this.props;
 
@@ -195,6 +199,13 @@ export class DateTimePickerModal extends React.PureComponent {
             label={confirmTextIOS}
           />
         </View>
+        {neutralButtonLabel && (
+          <CancelButtonComponent
+            isDarkModeEnabled={isDarkModeEnabled}
+            onPress={this.onNeutral}
+            label={neutralButtonLabel}
+          />
+        )}
         <CancelButtonComponent
           isDarkModeEnabled={isDarkModeEnabled}
           onPress={this.handleCancel}
