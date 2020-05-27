@@ -369,7 +369,7 @@ export const neutralButtonStyles = StyleSheet.create({
   button: {
     borderRadius: BORDER_RADIUS,
     height: 57,
-    marginBottom: 0,
+    marginBottom: 10,
     justifyContent: "center"
   },
   buttonLight: {
