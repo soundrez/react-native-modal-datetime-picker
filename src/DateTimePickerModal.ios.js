@@ -164,7 +164,7 @@ export class DateTimePickerModal extends React.PureComponent {
 
     const ConfirmButtonComponent = customConfirmButtonIOS || ConfirmButton;
     const CancelButtonComponent = customCancelButtonIOS || CancelButton;
-    const NeutralButtonComponent = customNeutralButtonIOS || CancelButton;
+    const NeutralButtonComponent = customNeutralButtonIOS || NeutralButton;
     const HeaderComponent =
       typeof (customTitleContainerIOS || customHeaderIOS) === "undefined"
         ? Header
@@ -341,3 +341,50 @@ export const cancelButtonStyles = StyleSheet.create({
     backgroundColor: "transparent"
   }
 });
+
+export const NeutralButton = ({
+  isDarkModeEnabled,
+  onPress,
+  label,
+  style = neutralButtonStyles
+}) => {
+  const themedButtonStyle = isDarkModeEnabled
+    ? neutralButtonStyles.buttonDark
+    : neutralButtonStyles.buttonLight;
+  const underlayColor = isDarkModeEnabled
+    ? HIGHLIGHT_COLOR_DARK
+    : HIGHLIGHT_COLOR_LIGHT;
+  return (
+    <TouchableHighlight
+      style={[style.button, themedButtonStyle]}
+      underlayColor={underlayColor}
+      onPress={onPress}
+    >
+      <Text style={style.text}>{label}</Text>
+    </TouchableHighlight>
+  );
+};
+
+export const neutralButtonStyles = StyleSheet.create({
+  button: {
+    borderRadius: BORDER_RADIUS,
+    height: 57,
+    marginBottom: 0,
+    justifyContent: "center"
+  },
+  buttonLight: {
+    backgroundColor: BACKGROUND_COLOR_LIGHT
+  },
+  buttonDark: {
+    backgroundColor: BACKGROUND_COLOR_DARK
+  },
+  text: {
+    padding: 10,
+    textAlign: "center",
+    color: BUTTON_FONT_COLOR,
+    fontSize: BUTTON_FONT_SIZE,
+    fontWeight: "600",
+    backgroundColor: "transparent"
+  }
+});
+
